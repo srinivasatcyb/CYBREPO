@@ -1,0 +1,42 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+ext.repositoryURL = ''
+ext.env = System.getenv()
+ext.buildNumber = env.BUILD_NUMBER?env.BUILD_NUMBER:0.1
+
+sourceCompatibility = 1.6
+
+archivesBaseName = 'sin'
+version = '0.1-SNAPSHOT'
+group = 'com.sin'
+
+repositories {
+	mavenRepo(name: 'remoteRepo', url: repositoryURL + '/repo')
+	//	mavenCentral()
+}
+
+configurations.all { resolutionStrategy.cacheChangingModulesFor 1, 'minutes' }
+
+dependencies {
+
+	compile 'org.projectlombok:lombok:0.11.4'
+    compile 'commons-io:commons-io:2.4+'
+    compile 'com.google.guava:guava:14.0.1+'
+	compile 'com.yammer.dropwizard:dropwizard-core:0.6.1'
+	compile 'com.yammer.dropwizard:dropwizard-client:0.6.1'
+	compile 'org.javatuples:javatuples:1.2'
+	compile 'org.slf4j:slf4j-api:1.7.2'
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+	compile 'org.apache.cxf:cxf:2.7.3'
+	
+	testCompile 'junit:junit:4.+'
+	testCompile 'org.mockito:mockito-core:1.9.5+'
+}
+
+distZip {
+	archiveName(archivesBaseName + ".zip")
+}
+
