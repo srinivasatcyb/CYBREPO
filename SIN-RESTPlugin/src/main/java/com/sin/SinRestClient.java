@@ -11,8 +11,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 //test this
+
 public class SinRestClient {
-	
+	//Yogi
 	HttpClient httpClient;
 	String targetUrl = "http://localhost:8090/hello-world";
 
